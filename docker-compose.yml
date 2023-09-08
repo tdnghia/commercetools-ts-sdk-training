@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  commercetools:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: commercetools-node-sdk
+    volumes:
+      - ./:/app
+    ports:
+      - 3000:3000
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    #command: docker-compose run --rm -it commercetools bash

@@ -14,6 +14,7 @@ const customerDraft: CustomerDraft = {
     lastName: "Tester",
     email: "test@test.com",
     password: "password",
+    // key: "employee",
     key: "tt-customer",
     addresses: [
         {
@@ -25,7 +26,24 @@ const customerDraft: CustomerDraft = {
     defaultShippingAddress: 0
 };
 
-createCustomer(customerDraft).then(log).catch(log);
+// Create a new customer
+createCustomer(customerDraft).then(() => {
+    log
+    // Create email token then verify customer's email
+    getCustomerByKey(customerDraft.key!)
+        .then(createCustomerToken)
+        .then(confirmCustomerEmail)
+        .then(() => {
+            log
+            // Assign the customer into a customer group
+            assignCustomerToCustomerGroup(customerDraft.key!, "indoor-customers")
+                .then(log)
+                .catch(log);
+        })
+        .catch(log);
+}).catch(log);
+
+// console.log(assignCustomerToCustomerGroup(customerDraft.key!, "indoor-customers"));
 
 // getCustomerByKey(customerDraft.key!).then(log).catch(log);
 
@@ -34,7 +52,7 @@ createCustomer(customerDraft).then(log).catch(log);
 //     .then(confirmCustomerEmail)
 //     .then(log)
 //     .catch(log);
-
+//
 // assignCustomerToCustomerGroup(customerDraft.key!, "indoor-customers")
 //     .then(log)
 //     .catch(log);

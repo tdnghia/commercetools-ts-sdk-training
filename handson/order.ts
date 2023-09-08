@@ -1,4 +1,13 @@
-import { ClientResponse, Cart, CustomerSignin, CustomerSignInResult, Order, OrderFromCartDraft, OrderState } from "@commercetools/platform-sdk";
+import {
+    ClientResponse,
+    Cart,
+    CustomerSignin,
+    CustomerSignInResult,
+    Order,
+    OrderFromCartDraft,
+    OrderState,
+    ShippingMethod
+} from "@commercetools/platform-sdk";
 import { apiRoot } from "./client";
 import { getCustomerByKey } from "./customer";
 
